@@ -27,9 +27,13 @@ int main(int argc, char *argv[]) {
     while (fgets(line, sizeof(line), file) != NULL) {
         line_number++;
         token = strtok(line, " \n");
-        if (token != NULL && token[0] != '#') {  /* '#' starts a comment line */
-            execute_command(token, &stack, line_number);
+
+        
+        if (token == NULL || token[0] == '#') {
+            continue;
         }
+
+        execute_command(token, &stack, line_number);
     }
 
     fclose(file);
