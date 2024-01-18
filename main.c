@@ -65,5 +65,15 @@ void execute_command(const char *command, stack_t **stack, unsigned int line_num
     if (strcmp(command, "sub") == 0) {
         sub(stack, line_number);
     }
+    if (strcmp(command, "div") == 0) {
+        div_stack(stack, line_number);
+    }
+    if (strcmp(command, "mul") == 0) {
+        mul(stack, line_number);
+    }
+    if (strcmp(command, "mod") == 0) {
+        mod(stack, line_number);
+    }
+
 }
 
