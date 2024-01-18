@@ -47,6 +47,8 @@ void execute_command(const char *command, stack_t **stack, unsigned int line_num
     } else if (strcmp(command, "pall") == 0) {
         pall(stack, line_number);
     }
-    /* Implement other commands as needed */
+    if (strcmp(command, "pint") == 0) {
+        pint(stack, line_number);
+    }
 }
 
