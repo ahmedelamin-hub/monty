@@ -50,5 +50,8 @@ void execute_command(const char *command, stack_t **stack, unsigned int line_num
     if (strcmp(command, "pint") == 0) {
         pint(stack, line_number);
     }
+    if (strcmp(command, "pop") == 0) {
+        pop(stack, line_number);
+    }
 }
 
