@@ -2,10 +2,16 @@
 
 #include "monty.h"
 #include <string.h>
+#include <ctype.h>
+
+void execute_command(const char *command, stack_t **stack, unsigned int line_number);
 
 int main(int argc, char *argv[]) {
     FILE *file;
-    char line[1024]; /* Assuming a reasonable maximum line length */
+    char line[1024];
+    char *token;
+    unsigned int line_number = 0;
+    stack_t *stack = NULL;
 
     if (argc != 2) {
         fprintf(stderr, "USAGE: monty file\n");
@@ -19,12 +25,28 @@ int main(int argc, char *argv[]) {
     }
 
     while (fgets(line, sizeof(line), file) != NULL) {
-        /* Remove newline character from fgets */
-        line[strcspn(line, "\n")] = 0;
-        /* Parse and execute each line */
+        line_number++;
+        token = strtok(line, " \n");
+        if (token != NULL && token[0] != '#') {  /* '#' starts a comment line */
+            execute_command(token, &stack, line_number);
+        }
     }
 
     fclose(file);
     return 0;
+}
+
+void execute_command(const char *command, stack_t **stack, unsigned int line_number) {
+    if (strcmp(command, "push") == 0) {
+        char *num_str = strtok(NULL, " \n");
+        if (num_str == NULL || !isdigit(num_str[0])) {
+            fprintf(stderr, "L%d: usage: push integer\n", line_number);
+            exit(EXIT_FAILURE);
+        }
+        push(stack, line_number, atoi(num_str));
+    } else if (strcmp(command, "pall") == 0) {
+        pall(stack, line_number);
+    }
+    /* Implement other commands as needed */
 }
 
