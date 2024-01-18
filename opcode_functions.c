@@ -33,12 +33,3 @@ void pall(stack_t **stack, unsigned int line_number) {
         current = current->next;
     }
 }
-
-void nop(stack_t **stack, unsigned int line_number) {
-    /* To avoid unused parameter warnings */
-    (void) stack;
-    (void) line_number;
-
-    /* This function doesn't do anything. */
-}
-
