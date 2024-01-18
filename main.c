@@ -56,5 +56,8 @@ void execute_command(const char *command, stack_t **stack, unsigned int line_num
     if (strcmp(command, "swap") == 0) {
         swap(stack, line_number);
     }
+    if (strcmp(command, "add") == 0) {
+        add(stack, line_number);
+    }
 }
 
